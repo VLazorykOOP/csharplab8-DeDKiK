@@ -61,3 +61,41 @@ class HexToPlusConverter
         Console.WriteLine("Шістнадцяткові цифри були замінені на знак '+'.");
     }
 }
+//завдання 3
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string inputFilePath = @"C:\Users\deres\source\repos\lab8\lab8\task3in.txt"; // Вкажіть шлях до вашого вхідного файлу
+        string outputFilePath = @"C:\Users\deres\source\repos\lab8\lab8\task3out.txt"; // Вкажіть шлях до файлу результату
+
+        // Читаємо вміст вхідного файлу
+        string text = File.ReadAllText(inputFilePath);
+
+        // Розділяємо текст на слова
+        string[] words = Regex.Split(text, @"\W+");
+
+        using (StreamWriter writer = new StreamWriter(outputFilePath))
+        {
+            foreach (string word in words)
+            {
+                if (word.Length % 2 != 0) // Перевіряємо, чи є довжина слова непарною
+                {
+                    // Вилучаємо середню літеру
+                    string newWord = word.Remove(word.Length / 2, 1);
+                    writer.Write(newWord + " ");
+                }
+                else
+                {
+                    writer.Write(word + " ");
+                }
+            }
+        }
+
+        Console.WriteLine("Операція завершена. Перевірте файл результату.");
+    }
+}
