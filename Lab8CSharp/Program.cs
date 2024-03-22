@@ -37,3 +37,27 @@ class Program
         File.WriteAllText(filePath, text); // Записуємо змінений текст назад у файл
     }
 }
+// завдання 2
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
+
+class HexToPlusConverter
+{
+    public static void Main()
+    {
+        string sourceFilePath = @"C:\Users\deres\source\repos\lab8\lab8\task2file.txt"; // Вкажіть шлях до вашого вихідного файлу
+        string destinationFilePath = @"C:\Users\deres\source\repos\lab8\lab8\task2newFile.txt"; // Вкажіть шлях до файлу результату
+
+        // Читаємо вміст вихідного файлу
+        string content = File.ReadAllText(sourceFilePath);
+
+        // Замінюємо всі шістнадцяткові цифри на знак '+'
+        string modifiedContent = Regex.Replace(content, "[0-9a-fA-F]", "+");
+
+        // Записуємо змінений вміст у новий файл
+        File.WriteAllText(destinationFilePath, modifiedContent);
+
+        Console.WriteLine("Шістнадцяткові цифри були замінені на знак '+'.");
+    }
+}
