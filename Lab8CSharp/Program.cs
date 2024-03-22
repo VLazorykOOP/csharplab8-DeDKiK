@@ -99,3 +99,35 @@ class Program
         Console.WriteLine("Операція завершена. Перевірте файл результату.");
     }
 }
+// завдання 4
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Задана послідовність чисел
+        double[] numbers = { 1.5, 2.3, 3.7, 4.2, 5.9, 6.1, 7.4 };
+        // Задане число для порівняння
+        double comparisonNumber = 4.0;
+
+        // Шлях до файлу для запису
+        string filePath = @"C:\Users\deres\source\repos\lab8\lab8\task4numbers.txt";
+
+        // Запис чисел у файл
+        File.WriteAllLines(filePath, numbers.Select(n => n.ToString()));
+
+        // Виведення на екран чисел з непарними індексами, які більші за задане число
+        for (int i = 0; i < numbers.Length; i += 2)
+        {
+            if (numbers[i] > comparisonNumber)
+            {
+                Console.WriteLine($"Число з непарним індексом {i + 1} та більше за {comparisonNumber}: {numbers[i]}");
+            }
+        }
+    }
+}
